@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Rolling Total Fitness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: #f0f0f0; overflow-x: hidden; }
+        .font-display { font-family: 'Oswald', sans-serif; }
+        .product-img { transition: transform 0.5s ease; }
+        .product-card:hover .product-img { transform: scale(1.07); }
+        .card-lift { transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+        .card-lift:hover { transform: translateY(-4px); border-color: rgba(228,41,16,0.35) !important; box-shadow: 0 0 30px rgba(228,41,16,0.08); }
+        ::selection { background: #E42910; color: white; }
+        .filter-btn.active { background: #E42910 !important; color: white !important; border-color: #E42910 !important; }
+        .dropdown-menu { opacity: 0; visibility: hidden; transform: translateY(8px); transition: all 0.2s ease; }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .select-styled { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff60' stroke-width='2'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-size: 14px; appearance: none; }
+    </style>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="bg-[#E42910] text-white text-center text-xs py-2.5 px-4 font-medium">
+    FREE SHIPPING on orders over KShs 75 &nbsp;|&nbsp; Use code <strong>ROLL20</strong> for 20% off &nbsp;|&nbsp;
+    <a href="shop.html" class="underline font-bold">Shop Now →</a>
+</div>
+
+<!-- Nav -->
+<nav class="sticky top-0 z-50 bg-[#050505]/95 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center gap-6">
+        <a href="index.html" class="flex-shrink-0"><img src="image%20assets/rolling%20logo-01.svg" alt="Rolling Total Fitness" class="h-9 w-auto"></a>
+        <div class="hidden lg:flex items-center gap-6 text-sm font-medium text-white/60">
+            <div class="dropdown relative">
+                <button class="flex items-center gap-1 hover:text-white transition-colors py-2">Categories <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg></button>
+                <div class="dropdown-menu absolute top-full left-0 mt-2 w-56 bg-[#0d0d0d] border border-white/10 rounded-2xl shadow-2xl z-50 p-2">
+                    <a href="shop.html?cat=protein" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/5 text-white/60 hover:text-white transition-colors text-sm">💪 Protein Powders</a>
+                    <a href="shop.html?cat=preworkout" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/5 text-white/60 hover:text-white transition-colors text-sm">⚡ Pre-Workout</a>
+                    <a href="shop.html?cat=vitamins" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/5 text-white/60 hover:text-white transition-colors text-sm">🌿 Vitamins & Health</a>
+                    <a href="shop.html?cat=weight" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/5 text-white/60 hover:text-white transition-colors text-sm">🔥 Weight Management</a>
+                </div>
+            </div>
+            <a href="shop.html?filter=deals" class="hover:text-white transition-colors">Deals</a>
+            <a href="shop.html?filter=new" class="hover:text-white transition-colors">What's New</a>
+            <a href="about.html" class="hover:text-white transition-colors">About</a>
+        </div>
+        <div class="hidden md:flex flex-1 max-w-sm ml-auto">
+            <div class="relative w-full">
+                <input type="text" placeholder="Search supplements..." class="w-full bg-white/5 border border-white/10 text-white placeholder-white/30 text-sm rounded-full px-4 py-2.5 pr-10 focus:outline-none focus:border-[#E42910]/50 transition-all">
+                <svg class="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0"/></svg>
+            </div>
+        </div>
+        <div class="flex items-center gap-3 ml-4">
+            <a href="#" class="hidden md:flex items-center gap-1.5 text-white/50 hover:text-white text-sm transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Account
+            </a>
+            <a href="cart.html" class="relative flex items-center gap-2 bg-[#E42910] hover:bg-[#FF7085] text-white px-4 py-2 rounded-full text-sm font-semibold transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+                Cart <span id="cart-count" class="bg-white text-[#E42910] text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center leading-none">0</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- Page header -->
+<div class="bg-[#0A0A0A] border-b border-white/5 py-10">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center gap-2 text-xs text-white/30 mb-4">
+            <a href="index.html" class="hover:text-white transition-colors">Home</a>
+            <span>/</span>
+            <span class="text-white/60" id="breadcrumb-cat">All Products</span>
+        </div>
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+                <h1 class="font-display text-4xl font-bold text-white uppercase tracking-tight" id="page-title">All Supplements</h1>
+                <p class="text-white/35 mt-1 text-sm" id="page-subtitle">160 products available</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <select class="select-styled bg-[#111] border border-white/10 text-white/60 text-sm rounded-full px-4 py-2.5 pr-9 focus:outline-none focus:border-[#E42910]/40 cursor-pointer" onchange="sortProducts(this.value)">
+                    <option value="">Sort By</option>
+                    <option value="popular">Most Popular</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                    <option value="rating">Top Rated</option>
+                    <option value="new">Newest First</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Filter Bar -->
+<div class="sticky top-[73px] z-40 bg-[#050505]/95 backdrop-blur-md border-b border-white/5 py-4">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide">
+            <button class="filter-btn active flex-shrink-0 px-4 py-2 rounded-full text-xs font-semibold border border-white/10 text-white/60 hover:text-white transition-all" data-cat="all">All</button>
+            <button class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-xs font-semibold border border-white/10 text-white/60 hover:text-white transition-all" data-cat="protein">💪 Protein</button>
+            <button class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-xs font-semibold border border-white/10 text-white/60 hover:text-white transition-all" data-cat="preworkout">⚡ Pre-Workout</button>
+            <button class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-xs font-semibold border border-white/10 text-white/60 hover:text-white transition-all" data-cat="vitamins">🌿 Vitamins</button>
+            <button class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-xs font-semibold border border-white/10 text-white/60 hover:text-white transition-all" data-cat="weight">🔥 Weight Mgmt</button>
+            <div class="w-px h-5 bg-white/10 mx-1 flex-shrink-0"></div>
+            <button class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-xs font-semibold border border-white/10 text-white/60 hover:text-white transition-all" data-filter="sale">On Sale</button>
+            <button class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-xs font-semibold border border-white/10 text-white/60 hover:text-white transition-all" data-filter="new">New Arrivals</button>
+            <button class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-xs font-semibold border border-white/10 text-white/60 hover:text-white transition-all" data-filter="vegan">Vegan</button>
+        </div>
+    </div>
+</div>
+
+<!-- Products Grid -->
+<section class="py-12">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5" id="products-grid">
+
+            <!-- Row 1 -->
+            <div class="product-card group bg-[#111] border border-white/5 rounded-2xl overflow-hidden card-lift" data-cat="protein" data-tags="sale">
+                <div class="relative overflow-hidden aspect-square bg-[#1a1a1a]">
+                    <img src="product%20images/nitro%20tech.webp" alt="Whey Pro Isolate" class="product-img w-full h-full object-contain p-3">
+                    <span class="absolute top-3 left-3 bg-[#E42910] text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Sale</span>
+                    <button onclick="toggleWish(this)" class="absolute top-3 right-3 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white/50 hover:text-[#E42910] transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></button>
+                    <a href="product.html?id=1" class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span class="bg-white text-black text-xs font-bold px-4 py-2 rounded-full">Quick View</span></a>
+                </div>
+                <div class="p-4">
+                    <div class="text-[#E42910] text-[10px] font-semibold uppercase tracking-widest mb-1">Protein</div>
+                    <a href="product.html?id=1" class="text-white text-sm font-semibold leading-snug hover:text-[#E42910] transition-colors block mb-1">Whey Pro Isolate 2.5lb</a>
+                    <div class="text-white/35 text-xs mb-3">25g protein per serving, all flavors</div>
+                    <div class="flex items-center gap-1 mb-3"><span class="text-[#E42910] text-xs">★★★★★</span><span class="text-white/30 text-xs">(121)</span></div>
+                    <div class="flex items-center justify-between">
+                        <div><span class="text-white font-bold">KShs 59.99</span><span class="text-white/25 text-xs line-through ml-1.5">KShs 89.99</span></div>
+                        <button onclick="addToCart(1,'Whey Pro Isolate 2.5lb',59.99)" class="bg-[#E42910] hover:bg-[#FF7085] text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">+ Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card group bg-[#111] border border-white/5 rounded-2xl overflow-hidden card-lift" data-cat="protein" data-tags="vegan">
+                <div class="relative overflow-hidden aspect-square bg-[#1a1a1a]">
+                    <img src="product%20images/1%20rule.jpg" alt="Plant Power" class="product-img w-full h-full object-contain p-3">
+                    <span class="absolute top-3 left-3 bg-green-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Vegan</span>
+                    <button onclick="toggleWish(this)" class="absolute top-3 right-3 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white/50 hover:text-[#E42910] transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></button>
+                    <a href="product.html?id=2" class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span class="bg-white text-black text-xs font-bold px-4 py-2 rounded-full">Quick View</span></a>
+                </div>
+                <div class="p-4">
+                    <div class="text-[#E42910] text-[10px] font-semibold uppercase tracking-widest mb-1">Protein</div>
+                    <a href="product.html?id=2" class="text-white text-sm font-semibold leading-snug hover:text-[#E42910] transition-colors block mb-1">Plant Power Blend 2lb</a>
+                    <div class="text-white/35 text-xs mb-3">Pea + Rice protein, 22g per serving</div>
+                    <div class="flex items-center gap-1 mb-3"><span class="text-[#E42910] text-xs">★★★★★</span><span class="text-white/30 text-xs">(98)</span></div>
+                    <div class="flex items-center justify-between">
+                        <div><span class="text-white font-bold">KShs 49.99</span><span class="text-white/25 text-xs line-through ml-1.5">KShs 69.99</span></div>
+                        <button onclick="addToCart(2,'Plant Power Blend 2lb',49.99)" class="bg-[#E42910] hover:bg-[#FF7085] text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">+ Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card group bg-[#111] border border-white/5 rounded-2xl overflow-hidden card-lift" data-cat="protein" data-tags="sale">
+                <div class="relative overflow-hidden aspect-square bg-[#1a1a1a]">
+                    <img src="product%20images/carnivor.jpg" alt="Casein Night" class="product-img w-full h-full object-contain p-3">
+                    <button onclick="toggleWish(this)" class="absolute top-3 right-3 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white/50 hover:text-[#E42910] transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></button>
+                    <a href="product.html?id=7" class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span class="bg-white text-black text-xs font-bold px-4 py-2 rounded-full">Quick View</span></a>
+                </div>
+                <div class="p-4">
+                    <div class="text-[#E42910] text-[10px] font-semibold uppercase tracking-widest mb-1">Protein</div>
+                    <a href="product.html?id=7" class="text-white text-sm font-semibold leading-snug hover:text-[#E42910] transition-colors block mb-1">Casein Night Recovery 2lb</a>
+                    <div class="text-white/35 text-xs mb-3">Slow-release overnight protein</div>
+                    <div class="flex items-center gap-1 mb-3"><span class="text-[#E42910] text-xs">★★★★☆</span><span class="text-white/30 text-xs">(45)</span></div>
+                    <div class="flex items-center justify-between">
+                        <div><span class="text-white font-bold">KShs 54.99</span><span class="text-white/25 text-xs line-through ml-1.5">KShs 74.99</span></div>
+                        <button onclick="addToCart(7,'Casein Night Recovery 2lb',54.99)" class="bg-[#E42910] hover:bg-[#FF7085] text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">+ Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card group bg-[#111] border border-white/5 rounded-2xl overflow-hidden card-lift" data-cat="protein" data-tags="new">
+                <div class="relative overflow-hidden aspect-square bg-[#1a1a1a]">
+                    <img src="product%20images/XTEND-ORIGINAL-7G.webp" alt="Serious Mass Gainer" class="product-img w-full h-full object-contain p-3">
+                    <span class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">New</span>
+                    <button onclick="toggleWish(this)" class="absolute top-3 right-3 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white/50 hover:text-[#E42910] transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></button>
+                    <a href="product.html?id=9" class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span class="bg-white text-black text-xs font-bold px-4 py-2 rounded-full">Quick View</span></a>
+                </div>
+                <div class="p-4">
+                    <div class="text-[#E42910] text-[10px] font-semibold uppercase tracking-widest mb-1">Protein</div>
+                    <a href="product.html?id=9" class="text-white text-sm font-semibold leading-snug hover:text-[#E42910] transition-colors block mb-1">Serious Mass Gainer 5lb</a>
+                    <div class="text-white/35 text-xs mb-3">1,250 calories, 50g protein</div>
+                    <div class="flex items-center gap-1 mb-3"><span class="text-[#E42910] text-xs">★★★★☆</span><span class="text-white/30 text-xs">(72)</span></div>
+                    <div class="flex items-center justify-between">
+                        <div><span class="text-white font-bold">KShs 79.99</span><span class="text-white/25 text-xs line-through ml-1.5">KShs 99.99</span></div>
+                        <button onclick="addToCart(9,'Serious Mass Gainer 5lb',79.99)" class="bg-[#E42910] hover:bg-[#FF7085] text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">+ Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="product-card group bg-[#111] border border-white/5 rounded-2xl overflow-hidden card-lift" data-cat="preworkout" data-tags="sale">
+                <div class="relative overflow-hidden aspect-square bg-[#1a1a1a]">
+                    <img src="product%20images/pre%20work%20pump.webp" alt="Pre-X Extreme" class="product-img w-full h-full object-contain p-3">
+                    <span class="absolute top-3 left-3 bg-orange-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Hot</span>
+                    <button onclick="toggleWish(this)" class="absolute top-3 right-3 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white/50 hover:text-[#E42910] transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></button>
+                    <a href="product.html?id=3" class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span class="bg-white text-black text-xs font-bold px-4 py-2 rounded-full">Quick View</span></a>
+                </div>
+                <div class="p-4">
+                    <div class="text-[#E42910] text-[10px] font-semibold uppercase tracking-widest mb-1">Pre-Workout</div>
+                    <a href="product.html?id=3" class="text-white text-sm font-semibold leading-snug hover:text-[#E42910] transition-colors block mb-1">Pre-X Extreme 30 Servings</a>
+                    <div class="text-white/35 text-xs mb-3">Energy, focus & pump formula</div>
+                    <div class="flex items-center gap-1 mb-3"><span class="text-[#E42910] text-xs">★★★★☆</span><span class="text-white/30 text-xs">(213)</span></div>
+                    <div class="flex items-center justify-between">
+                        <div><span class="text-white font-bold">KShs 44.99</span><span class="text-white/25 text-xs line-through ml-1.5">KShs 64.99</span></div>
+                        <button onclick="addToCart(3,'Pre-X Extreme 30srv',44.99)" class="bg-[#E42910] hover:bg-[#FF7085] text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">+ Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card group bg-[#111] border border-white/5 rounded-2xl overflow-hidden card-lift" data-cat="preworkout" data-tags="">
+                <div class="relative overflow-hidden aspect-square bg-[#1a1a1a]">
+                    <img src="product%20images/cell%20tech.jpg" alt="Nitro Pump" class="product-img w-full h-full object-contain p-3">
+                    <span class="absolute top-3 left-3 bg-purple-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Popular</span>
+                    <button onclick="toggleWish(this)" class="absolute top-3 right-3 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white/50 hover:text-[#E42910] transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></button>
+                    <a href="product.html?id=8" class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span class="bg-white text-black text-xs font-bold px-4 py-2 rounded-full">Quick View</span></a>
+                </div>
+                <div class="p-4">
+                    <div class="text-[#E42910] text-[10px] font-semibold uppercase tracking-widest mb-1">Pre-Workout</div>
+                    <a href="product.html?id=8" class="text-white text-sm font-semibold leading-snug hover:text-[#E42910] transition-colors block mb-1">Nitro Pump 20 Servings</a>
+                    <div class="text-white/35 text-xs mb-3">Max blood flow & endurance</div>
+                    <div class="flex items-center gap-1 mb-3"><span class="text-[#E42910] text-xs">★★★★★</span><span class="text-white/30 text-xs">(178)</span></div>
+                    <div class="flex items-center justify-between">
+                        <div><span class="text-white font-bold">KShs 39.99</span><span class="text-white/25 text-xs line-through ml-1.5">KShs 54.99</span></div>
+                        <button onclick="addToCart(8,'Nitro Pump 20 Servings',39.99)" class="bg-[#E42910] hover:bg-[#FF7085] text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">+ Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card group bg-[#111] border border-white/5 rounded-2xl overflow-hidden card-lift" data-cat="preworkout" data-tags="new vegan">
+                <div class="relative overflow-hidden aspect-square bg-[#1a1a1a]">
+                    <img src="product%20images/xtend.jpg" alt="Storm Pre-Workout" class="product-img w-full h-full object-contain p-3">
+                    <span class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">New</span>
+                    <button onclick="toggleWish(this)" class="absolute top-3 right-3 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white/50 hover:text-[#E42910] transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></button>
+                    <a href="product.html?id=10" class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span class="bg-white text-black text-xs font-bold px-4 py-2 rounded-full">Quick View</span></a>
+                </div>
+                <div class="p-4">
+                    <div class="text-[#E42910] text-[10px] font-semibold uppercase tracking-widest mb-1">Pre-Workout</div>
+                    <a href="product.html?id=10" class="text-white text-sm font-semibold leading-snug hover:text-[#E42910] transition-colors block mb-1">Storm Pre-Workout 25srv</a>
+                    <div class="text-white/35 text-xs mb-3">Natural energy, no crash formula</div>
+                    <div class="flex items-center gap-1 mb-3"><span class="text-[#E42910] text-xs">★★★★☆</span><span class="text-white/30 text-xs">(52)</span></div>
+                    <div class="flex items-center justify-between">
+                        <div><span class="text-white font-bold">KShs 42.99</span><span class="text-white/25 text-xs line-through ml-1.5">KShs 55.99</span></div>
+                        <button onclick="addToCart(10,'Storm Pre-Workout 25srv',42.99)" class="bg-[#E42910] hover:bg-[#FF7085] text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">+ Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card group bg-[#111] border border-white/5 rounded-2xl overflow-hidden card-lift" data-cat="vitamins" data-tags="new">
+                <div class="relative overflow-hidden aspect-square bg-[#1a1a1a]">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop&auto=format" alt="Multi Elite" class="product-img w-full h-full object-cover">
+                    <span class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">New</span>
+                    <button onclick="toggleWish(this)" class="absolute top-3 right-3 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white/50 hover:text-[#E42910] transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></button>
+                    <a href="product.html?id=6" class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span class="bg-white text-black text-xs font-bold px-4 py-2 rounded-full">Quick View</span></a>
+                </div>
+                <div class="p-4">
+                    <div class="text-[#E42910] text-[10px] font-semibold uppercase tracking-widest mb-1">Vitamins</div>
+                    <a href="product.html?id=6" class="text-white text-sm font-semibold leading-snug hover:text-[#E42910] transition-colors block mb-1">Multi Elite Daily 90ct</a>
+                    <div class="text-white/35 text-xs mb-3">Complete athlete multivitamin</div>
+                    <div class="flex items-center gap-1 mb-3"><span class="text-[#E42910] text-xs">★★★★★</span><span class="text-white/30 text-xs">(64)</span></div>
+                    <div class="flex items-center justify-between">
+                        <div><span class="text-white font-bold">KShs 29.99</span><span class="text-white/25 text-xs line-through ml-1.5">KShs 39.99</span></div>
+                        <button onclick="addToCart(6,'Multi Elite Daily 90ct',29.99)" class="bg-[#E42910] hover:bg-[#FF7085] text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">+ Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card group bg-[#111] border border-white/5 rounded-2xl overflow-hidden card-lift" data-cat="vitamins" data-tags="sale">
+                <div class="relative overflow-hidden aspect-square bg-[#1a1a1a]">
+                    <img src="https://images.unsplash.com/photo-1550572017-aba5b8e06685?w=400&h=400&fit=crop&auto=format" alt="Omega-3" class="product-img w-full h-full object-cover">
+                    <span class="absolute top-3 left-3 bg-[#E42910] text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Sale</span>
+                    <button onclick="toggleWish(this)" class="absolute top-3 right-3 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white/50 hover:text-[#E42910] transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></button>
+                    <a href="product.html?id=4" class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span class="bg-white text-black text-xs font-bold px-4 py-2 rounded-full">Quick View</span></a>
+                </div>
+                <div class="p-4">
+                    <div class="text-[#E42910] text-[10px] font-semibold uppercase tracking-widest mb-1">Vitamins</div>
+                    <a href="product.html?id=4" class="text-white text-sm font-semibold leading-snug hover:text-[#E42910] transition-colors block mb-1">Omega-3 Fish Oil 180ct</a>
+                    <div class="text-white/35 text-xs mb-3">1000mg EPA & DHA per softgel</div>
+                    <div class="flex items-center gap-1 mb-3"><span class="text-[#E42910] text-xs">★★★★★</span><span class="text-white/30 text-xs">(87)</span></div>
+                    <div class="flex items-center justify-between">
+                        <div><span class="text-white font-bold">KShs 24.99</span><span class="text-white/25 text-xs line-through ml-1.5">KShs 34.99</span></div>
+                        <button onclick="addToCart(4,'Omega-3 Fish Oil 180ct',24.99)" class="bg-[#E42910] hover:bg-[#FF7085] text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">+ Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card group bg-[#111] border border-white/5 rounded-2xl overflow-hidden card-lift" data-cat="vitamins" data-tags="vegan">
+                <div class="relative overflow-hidden aspect-square bg-[#1a1a1a]">
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=400&fit=crop&auto=format" alt="Vitamin D3" class="product-img w-full h-full object-cover">
+                    <span class="absolute top-3 left-3 bg-green-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Vegan</span>
+                    <button onclick="toggleWish(this)" class="absolute top-3 right-3 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white/50 hover:text-[#E42910] transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></button>
+                    <a href="product.html?id=11" class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span class="bg-white text-black text-xs font-bold px-4 py-2 rounded-full">Quick View</span></a>
+                </div>
+                <div class="p-4">
+                    <div class="text-[#E42910] text-[10px] font-semibold uppercase tracking-widest mb-1">Vitamins</div>
+                    <a href="product.html?id=11" class="text-white text-sm font-semibold leading-snug hover:text-[#E42910] transition-colors block mb-1">Vitamin D3 + K2 120ct</a>
+                    <div class="text-white/35 text-xs mb-3">Bone health & immune support</div>
+                    <div class="flex items-center gap-1 mb-3"><span class="text-[#E42910] text-xs">★★★★★</span><span class="text-white/30 text-xs">(112)</span></div>
+                    <div class="flex items-center justify-between">
+                        <div><span class="text-white font-bold">KShs 19.99</span><span class="text-white/25 text-xs line-through ml-1.5">KShs 27.99</span></div>
+                        <button onclick="addToCart(11,'Vitamin D3 + K2 120ct',19.99)" class="bg-[#E42910] hover:bg-[#FF7085] text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">+ Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card group bg-[#111] border border-white/5 rounded-2xl overflow-hidden card-lift" data-cat="weight" data-tags="sale">
+                <div class="relative overflow-hidden aspect-square bg-[#1a1a1a]">
+                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400&h=400&fit=crop&auto=format" alt="Thermo Burn" class="product-img w-full h-full object-cover">
+                    <span class="absolute top-3 left-3 bg-[#E42910] text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Sale</span>
+                    <button onclick="toggleWish(this)" class="absolute top-3 right-3 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white/50 hover:text-[#E42910] transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></button>
+                    <a href="product.html?id=5" class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span class="bg-white text-black text-xs font-bold px-4 py-2 rounded-full">Quick View</span></a>
+                </div>
+                <div class="p-4">
+                    <div class="text-[#E42910] text-[10px] font-semibold uppercase tracking-widest mb-1">Weight Mgmt</div>
+                    <a href="product.html?id=5" class="text-white text-sm font-semibold leading-snug hover:text-[#E42910] transition-colors block mb-1">Thermo Burn Pro 60ct</a>
+                    <div class="text-white/35 text-xs mb-3">Advanced thermogenic formula</div>
+                    <div class="flex items-center gap-1 mb-3"><span class="text-[#E42910] text-xs">★★★★☆</span><span class="text-white/30 text-xs">(156)</span></div>
+                    <div class="flex items-center justify-between">
+                        <div><span class="text-white font-bold">KShs 49.99</span><span class="text-white/25 text-xs line-through ml-1.5">KShs 69.99</span></div>
+                        <button onclick="addToCart(5,'Thermo Burn Pro 60ct',49.99)" class="bg-[#E42910] hover:bg-[#FF7085] text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">+ Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card group bg-[#111] border border-white/5 rounded-2xl overflow-hidden card-lift" data-cat="weight" data-tags="sale vegan">
+                <div class="relative overflow-hidden aspect-square bg-[#1a1a1a]">
+                    <img src="https://images.unsplash.com/photo-1579722820009-7b3a14a2ff0e?w=400&h=400&fit=crop&auto=format" alt="CLA 1000" class="product-img w-full h-full object-cover">
+                    <button onclick="toggleWish(this)" class="absolute top-3 right-3 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white/50 hover:text-[#E42910] transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></button>
+                    <a href="product.html?id=12" class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span class="bg-white text-black text-xs font-bold px-4 py-2 rounded-full">Quick View</span></a>
+                </div>
+                <div class="p-4">
+                    <div class="text-[#E42910] text-[10px] font-semibold uppercase tracking-widest mb-1">Weight Mgmt</div>
+                    <a href="product.html?id=12" class="text-white text-sm font-semibold leading-snug hover:text-[#E42910] transition-colors block mb-1">CLA 1000mg 180 Softgels</a>
+                    <div class="text-white/35 text-xs mb-3">Supports lean muscle & fat loss</div>
+                    <div class="flex items-center gap-1 mb-3"><span class="text-[#E42910] text-xs">★★★★☆</span><span class="text-white/30 text-xs">(89)</span></div>
+                    <div class="flex items-center justify-between">
+                        <div><span class="text-white font-bold">KShs 34.99</span><span class="text-white/25 text-xs line-through ml-1.5">KShs 44.99</span></div>
+                        <button onclick="addToCart(12,'CLA 1000mg 180ct',34.99)" class="bg-[#E42910] hover:bg-[#FF7085] text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">+ Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card group bg-[#111] border border-white/5 rounded-2xl overflow-hidden card-lift" data-cat="weight" data-tags="new">
+                <div class="relative overflow-hidden aspect-square bg-[#1a1a1a]">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop&auto=format" alt="Lean Stack" class="product-img w-full h-full object-cover">
+                    <span class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">New</span>
+                    <button onclick="toggleWish(this)" class="absolute top-3 right-3 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white/50 hover:text-[#E42910] transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></button>
+                    <a href="product.html?id=13" class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span class="bg-white text-black text-xs font-bold px-4 py-2 rounded-full">Quick View</span></a>
+                </div>
+                <div class="p-4">
+                    <div class="text-[#E42910] text-[10px] font-semibold uppercase tracking-widest mb-1">Weight Mgmt</div>
+                    <a href="product.html?id=13" class="text-white text-sm font-semibold leading-snug hover:text-[#E42910] transition-colors block mb-1">Lean Mass Stack Bundle</a>
+                    <div class="text-white/35 text-xs mb-3">3-product bundle for lean gains</div>
+                    <div class="flex items-center gap-1 mb-3"><span class="text-[#E42910] text-xs">★★★★★</span><span class="text-white/30 text-xs">(34)</span></div>
+                    <div class="flex items-center justify-between">
+                        <div><span class="text-white font-bold">KShs 64.99</span><span class="text-white/25 text-xs line-through ml-1.5">KShs 89.99</span></div>
+                        <button onclick="addToCart(13,'Lean Mass Stack Bundle',64.99)" class="bg-[#E42910] hover:bg-[#FF7085] text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">+ Cart</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- No results message -->
+        <div id="no-results" class="hidden text-center py-20">
+            <div class="text-white/20 text-6xl mb-4">🔍</div>
+            <h3 class="font-display text-2xl font-bold text-white uppercase mb-2">No Products Found</h3>
+            <p class="text-white/35 text-sm mb-6">Try a different category or filter</p>
+            <button onclick="resetFilters()" class="bg-[#E42910] text-white px-6 py-3 rounded-full text-sm font-semibold">View All Products</button>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-[#050505] border-t border-white/5 py-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/25">
+        <p>© 2026 Rolling Total Fitness. All rights reserved.</p>
+        <div class="flex gap-5">
+            <a href="index.html" class="hover:text-white/50 transition-colors">Home</a>
+            <a href="about.html" class="hover:text-white/50 transition-colors">About</a>
+            <a href="#" class="hover:text-white/50 transition-colors">Contact</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Toast -->
+<div id="toast" class="fixed bottom-6 right-6 bg-[#0d0d0d] border border-[#E42910]/30 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 z-[100] translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <svg class="w-5 h-5 text-[#E42910] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+    <span id="toast-msg" class="text-sm font-medium"></span>
+</div>
+
+<script>
+    const getCart = () => JSON.parse(localStorage.getItem('rtf_cart') || '[]');
+    const saveCart = c => { localStorage.setItem('rtf_cart', JSON.stringify(c)); updateCount(); };
+    function updateCount() {
+        const n = getCart().reduce((s, i) => s + i.qty, 0);
+        const el = document.getElementById('cart-count');
+        if (el) el.textContent = n;
+    }
+    function addToCart(id, name, price) {
+        const cart = getCart();
+        const ex = cart.find(i => i.id === id);
+        ex ? ex.qty++ : cart.push({ id, name, price, qty: 1 });
+        saveCart(cart);
+        showToast(name + ' added to cart!');
+    }
+    function toggleWish(btn) {
+        const on = btn.dataset.on === '1';
+        btn.dataset.on = on ? '0' : '1';
+        btn.querySelector('svg').style.fill = on ? 'none' : '#E42910';
+    }
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        document.getElementById('toast-msg').textContent = msg;
+        t.classList.remove('translate-y-24','opacity-0'); t.classList.add('translate-y-0','opacity-100');
+        setTimeout(() => { t.classList.add('translate-y-24','opacity-0'); t.classList.remove('translate-y-0','opacity-100'); }, 3000);
+    }
+    function sortProducts(v) { /* visual only */ }
+
+    let activeFilter = { cat: 'all', tag: '' };
+    function applyFilter() {
+        const cards = document.querySelectorAll('#products-grid .product-card');
+        let visible = 0;
+        cards.forEach(card => {
+            const cat = card.dataset.cat;
+            const tags = card.dataset.tags || '';
+            const catOk = activeFilter.cat === 'all' || cat === activeFilter.cat;
+            const tagOk = !activeFilter.tag || tags.includes(activeFilter.tag);
+            const show = catOk && tagOk;
+            card.style.display = show ? '' : 'none';
+            if (show) visible++;
+        });
+        document.getElementById('no-results').classList.toggle('hidden', visible > 0);
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            if (this.dataset.cat) { activeFilter.cat = this.dataset.cat; activeFilter.tag = ''; }
+            else if (this.dataset.filter) {
+                const map = { sale: 'sale', new: 'new', vegan: 'vegan' };
+                activeFilter.tag = map[this.dataset.filter] || '';
+                activeFilter.cat = 'all';
+            }
+            applyFilter();
+        });
+    });
+
+    function resetFilters() {
+        activeFilter = { cat: 'all', tag: '' };
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-cat="all"]').classList.add('active');
+        applyFilter();
+    }
+
+    // Handle URL params
+    const params = new URLSearchParams(window.location.search);
+    const urlCat = params.get('cat');
+    const urlFilter = params.get('filter');
+    if (urlCat) {
+        const btn = document.querySelector(`[data-cat="${urlCat}"]`);
+        if (btn) btn.click();
+    } else if (urlFilter) {
+        const btn = document.querySelector(`[data-filter="${urlFilter}"]`);
+        if (btn) btn.click();
+    }
+
+    updateCount();
+</script>
+</body>
+</html>
