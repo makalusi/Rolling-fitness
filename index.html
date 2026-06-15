@@ -61,13 +61,13 @@
             <a href="shop.html?filter=new" class="hover:text-white transition-colors">What's New</a>
             <a href="about.html" class="hover:text-white transition-colors">About</a>
         </div>
-        <div class="hidden md:flex flex-1 max-w-sm ml-auto">
+        <div class="hidden md:flex flex-1 max-w-sm">
             <div class="relative w-full">
                 <input type="text" placeholder="Search supplements..." class="w-full bg-white/5 border border-white/10 text-white placeholder-white/30 text-sm rounded-full px-4 py-2.5 pr-10 focus:outline-none focus:border-[#E42910]/50 transition-all">
                 <svg class="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0"/></svg>
             </div>
         </div>
-        <div class="flex items-center gap-3 ml-4">
+        <div class="flex items-center gap-3 ml-auto">
             <a href="#" class="hidden md:flex items-center gap-1.5 text-white/50 hover:text-white text-sm transition-colors">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 Account
@@ -77,12 +77,28 @@
                 Cart
                 <span id="cart-count" class="bg-white text-[#E42910] text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center leading-none">0</span>
             </a>
-            <button class="lg:hidden text-white/60 hover:text-white">
+            <button id="mobile-menu-btn" class="lg:hidden text-white/60 hover:text-white transition-colors p-1">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
             </button>
         </div>
     </div>
 </nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden lg:hidden sticky top-[57px] z-40 bg-[#0d0d0d] border-b border-white/10">
+    <div class="px-6 py-4 flex flex-col gap-1">
+        <a href="shop.html?cat=protein" class="flex items-center gap-3 py-3 text-white/70 hover:text-white border-b border-white/5 text-sm transition-colors">💪 Protein Powders</a>
+        <a href="shop.html?cat=preworkout" class="flex items-center gap-3 py-3 text-white/70 hover:text-white border-b border-white/5 text-sm transition-colors">⚡ Pre-Workout</a>
+        <a href="shop.html?cat=vitamins" class="flex items-center gap-3 py-3 text-white/70 hover:text-white border-b border-white/5 text-sm transition-colors">🌿 Vitamins & Health</a>
+        <a href="shop.html?cat=weight" class="flex items-center gap-3 py-3 text-white/70 hover:text-white border-b border-white/5 text-sm transition-colors">🔥 Weight Management</a>
+        <a href="shop.html?filter=deals" class="flex items-center gap-3 py-3 text-white/70 hover:text-white border-b border-white/5 text-sm transition-colors">🏷️ Deals</a>
+        <a href="shop.html?filter=new" class="flex items-center gap-3 py-3 text-white/70 hover:text-white border-b border-white/5 text-sm transition-colors">✨ What's New</a>
+        <div class="relative mt-3 mb-1">
+            <input type="text" placeholder="Search supplements..." class="w-full bg-white/5 border border-white/10 text-white placeholder-white/30 text-sm rounded-full px-4 py-3 pr-10 focus:outline-none focus:border-[#E42910]/50 transition-all">
+            <svg class="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0"/></svg>
+        </div>
+    </div>
+</div>
 
 <!-- Hero -->
 <section class="relative overflow-hidden pt-20 pb-24 md:pt-28 md:pb-32">
@@ -550,6 +566,16 @@
         this.classList.add('active');
     }));
     updateCount();
+
+    // Hamburger toggle
+    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        const open = !menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        this.innerHTML = open
+            ? '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>'
+            : '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>';
+    });
 
     // Scroll-reveal
     const revealObserver = new IntersectionObserver((entries) => {
